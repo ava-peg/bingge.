@@ -85,21 +85,21 @@ if st.button("查看兵哥的星座运势"):
 st.sidebar.header("额外功能：")
 image_option = st.sidebar.selectbox("选择一张兵哥的照片：", ["兵哥1", "兵哥2", "兵哥3"])
 
+img1_path = "img/兵哥.jpg"
 # 图片处理 - 使用GitHub Raw URL
 if image_option == "兵哥1":
-    image_url ="https://raw.githubusercontent.com/ava-peg/bingge./main/pythonxiangmu/img/兵哥.jpg"
     try:
         img = Image.open(requests.get(image_url, stream=True).raw)
-        st.image(img, caption="兵哥与朋友们的合照", use_column_width=True)
+        st.image(img_path, caption="兵哥与朋友们的合照", use_column_width=True)
     except:
         st.error("图片加载失败，请检查图片路径或网络连接")
 
 # 背景音乐处理 - 使用GitHub Raw URL
 audio_option = st.sidebar.selectbox("选择背景音乐：", ["没有", "欢快的背景音乐", "轻松的背景音乐"])
 
+audio_path = "img/小宇.mp3"
 if audio_option == "欢快的背景音乐":
-    audio_url = "https://raw.githubusercontent.com/ava-peg/bingge./main/pythonxiangmu/img/小宇.mp3"
-    st.audio(audio_url, format="audio/mp3")
+    st.audio(audio_path, format="audio/mp3")
 elif audio_option == "轻松的背景音乐":
     audio_url = "https://raw.githubusercontent.com/ava-peg/bingge./main/img/轻松音乐.mp3"
     st.audio(audio_url, format="audio/mp3")
@@ -121,6 +121,7 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+
 
 
 
