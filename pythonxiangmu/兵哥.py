@@ -87,7 +87,7 @@ image_option = st.sidebar.selectbox("选择一张兵哥的照片：", ["兵哥1"
 
 # 图片处理 - 使用GitHub Raw URL
 if image_option == "兵哥1":
-    image_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/兵哥.jpg"
+    image_url = "https://raw.githubusercontent.com/ava-peg/bingge/main/img/兵哥.jpg"
     try:
         img = Image.open(requests.get(image_url, stream=True).raw)
         st.image(img, caption="兵哥与朋友们的合照", use_column_width=True)
@@ -98,10 +98,10 @@ if image_option == "兵哥1":
 audio_option = st.sidebar.selectbox("选择背景音乐：", ["没有", "欢快的背景音乐", "轻松的背景音乐"])
 
 if audio_option == "欢快的背景音乐":
-    audio_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/小宇.mp3"
+    audio_url = "https://raw.githubusercontent.com/ava-peg/bingge/main/img/小宇.mp3"
     st.audio(audio_url, format="audio/mp3")
 elif audio_option == "轻松的背景音乐":
-    audio_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/轻松音乐.mp3"
+    audio_url = "https://raw.githubusercontent.com/ava-peg/bingge/main/img/轻松音乐.mp3"
     st.audio(audio_url, format="audio/mp3")
 
 # 留言板功能
@@ -121,3 +121,4 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+
