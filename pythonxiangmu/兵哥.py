@@ -2,6 +2,7 @@ import streamlit as st
 import random
 from datetime import datetime
 from PIL import Image
+import os
 
 # 设置页面标题和图标
 st.set_page_config(page_title="兵哥互动网站", page_icon="👑", layout="centered")
@@ -84,27 +85,33 @@ if st.button("查看兵哥的星座运势"):
 st.sidebar.header("额外功能：")
 image_option = st.sidebar.selectbox("选择一张兵哥的照片：", ["兵哥1", "兵哥2", "兵哥3"])
 
+# 图片处理 - 使用GitHub Raw URL
 if image_option == "兵哥1":
-    img = Image.open("img/兵哥.jpg")
+    image_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/兵哥.jpg"
+    try:
+        img = Image.open(requests.get(image_url, stream=True).raw)
+        st.image(img, caption="兵哥与朋友们的合照", use_column_width=True)
+    except:
+        st.error("图片加载失败，请检查图片路径或网络连接")
 
-st.image(img, caption="兵哥与朋友们的合照", use_column_width=True)
-
-# 背景音乐（如果需要播放背景音乐）
+# 背景音乐处理 - 使用GitHub Raw URL
 audio_option = st.sidebar.selectbox("选择背景音乐：", ["没有", "欢快的背景音乐", "轻松的背景音乐"])
 
 if audio_option == "欢快的背景音乐":
-    st.audio("img/小宇.mp3", format="audio/mp3")
+    audio_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/小宇.mp3"
+    st.audio(audio_url, format="audio/mp3")
 elif audio_option == "轻松的背景音乐":
-    st.audio("path/to/relaxing_music.mp3", format="audio/mp3")
+    audio_url = "https://raw.githubusercontent.com/ava-peg/binage/main/img/轻松音乐.mp3"
+    st.audio(audio_url, format="audio/mp3")
 
 # 留言板功能
 st.sidebar.header("留言板")
-user_message = st.text_area("在这里给兵哥留言：")
+user_message = st.sidebar.text_area("在这里给兵哥留言：")
 if st.sidebar.button("发送留言"):
     if user_message.strip():
-        st.sidebar.write(f"留言成功：{user_message}")
+        st.sidebar.success(f"留言成功：{user_message}")
     else:
-        st.sidebar.write("请输入有效留言。")
+        st.sidebar.warning("请输入有效留言。")
 
 # 页面底部
 st.markdown("""
